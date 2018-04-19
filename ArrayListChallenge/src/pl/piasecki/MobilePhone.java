@@ -40,9 +40,13 @@ public class MobilePhone {
 
     public void modifyContact(String name, String newName, String newNumber){
         if (isContactExist(name)){
-            Contact contact = contacts.get(findContact(name));
-            contact.setName(newName);
-            contact.setPhoneNumber(newNumber);
+            if(!isContactExist(newName) || newName.equals(name)){
+                Contact contact = contacts.get(findContact(name));
+                contact.setName(newName);
+                contact.setPhoneNumber(newNumber);
+            } else {
+                System.out.println("Contact with " + newName + " name already exists.");
+            }
         } else {
             System.out.println("Contact with " + name + " name do not exist.");
         }
@@ -50,8 +54,12 @@ public class MobilePhone {
 
     public void modifyContactName(String name, String newName){
         if (isContactExist(name)){
-            Contact contact = contacts.get(findContact(name));
-            contact.setName(newName);
+            if(!isContactExist(newName)){
+                Contact contact = contacts.get(findContact(name));
+                contact.setName(newName);
+            } else {
+                System.out.println("Contact with " + newName + " name already exists.");
+            }
         } else {
             System.out.println("Contact with " + name + " name do not exist.");
         }
